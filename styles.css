@@ -47,11 +47,11 @@
     transition: 0.2s ease;
 
     -webkit-touch-callout: none;
-	-webkit-user-select: none;
-	-khtml-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
   }
 
   .color {
@@ -127,6 +127,10 @@
   }
 
   .pcr-button {
+    margin-top: 5px;
+  }
+
+  .pcr-button {
 
     /*background: linear-gradient(120deg, #bb2929, #d48918, #e4e021, #6fd828, #29dbcc, #2642dd, #7a28d8, #cd1fe4, #e61717); */
     width: 60px;
@@ -151,7 +155,7 @@
   .palette {
     position: relative;
     /* background-color:#aaaaaa; */
-    width: 70px;
+    width: 170px;
   }
 
   .seconsPanel {

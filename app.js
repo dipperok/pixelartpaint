@@ -113,7 +113,6 @@ function setColorClick(element) {
                 console.log('Прозрачный')
             } else {
                 changeColor(element.style.background)
-                
             }
         }
     }
