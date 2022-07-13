@@ -1,2 +1,2 @@
 # pixelartpaint
-Simple Pixel Art Paint
+Simple Pixel Art Paint.
