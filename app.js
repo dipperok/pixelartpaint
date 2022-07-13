@@ -12,6 +12,9 @@ let canvasSizePX = 528
 let squareSize = '22px'
 const squareS = document.querySelectorAll('.square')
 const btnClear = document.querySelector('#clearColor')
+const dwlButton = document.querySelector('#dwlButton')
+const canvasPicture = document.querySelector('.canvasPicture')
+let cvsPic = canvasPicture.getContext('2d')
 
 const sizeSettings = {
     num0: 64,
@@ -67,6 +70,7 @@ pipette.addEventListener('click', () => {
 function clearCanvas() {
     board.innerHTML = ""
     createCanvas()
+    getCanvasPicture()
 }
 
 function createCanvas(){
@@ -79,6 +83,8 @@ function createCanvas(){
         square.addEventListener('mousemove', () => setColorMove(square))
         square.addEventListener('click', () => setColorClick(square))
         board.append(square)
+        canvasPicture.height = Math.sqrt(canvasSize)
+        canvasPicture.width = Math.sqrt(canvasSize)
     }
 }
 
@@ -96,6 +102,7 @@ function setColorMove(element) {
     if (color != pipetteColor) {
         if (isPaining) {
             element.style.background = color
+            getCanvasPicture()
         }
         if (!isOnCanvas) {
             finishPaint()
@@ -106,6 +113,8 @@ function setColorClick(element) {
     if (!isPaining ) {
         if (color != pipetteColor) {
             element.style.background = color
+            getCanvasPicture()
+
             //console.log(element.style.backgroundColor)
             //console.log(window.getComputedStyle(element).backgroundColor.split(',').length)
         } else {
@@ -151,6 +160,35 @@ function checkOnCanvas(XY = [0, 0] ) {
 board.addEventListener('mousedown', startPaint)
 board.addEventListener('mouseup', finishPaint)
 body.addEventListener('mousemove', Paint)
+
+
+function getCanvasPicture() {
+    const allSquares = document.querySelectorAll('.square')
+    let squaresColors = []
+    for (let i = 0; i < canvasSize; i++) {
+        squaresColors.push(String(allSquares[i].style.background))
+        if(squaresColors[i] == '') {
+            squaresColors[i] = 'rgba(255, 255, 255, 0)'
+        }
+    }
+    console.log(squaresColors)
+    for (let i = 0; i < canvasPicture.width; i++) {
+        for (let j = 0; j < canvasPicture.height; j++) {
+            cvsPic.beginPath()
+            cvsPic.rect(j, i, 1, 1)
+            cvsPic.fillStyle = squaresColors[i * canvasPicture.width + j]
+            cvsPic.fill()
+        }
+    }
+}
+
+function dwnPicture() {
+    image = canvasPicture.toDataURL("image/png", 1.0).replace("imagepng", "image/octet-stream")
+    let link = document.createElement('a');
+    link.download = "my-image.png";
+    link.href = image;
+    link.click();
+}
 
 // Simple example, see optional options for more configuration.
 const pickr = Pickr.create({

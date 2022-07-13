@@ -184,3 +184,11 @@
     -webkit-text-fill-color: transparent;
   }
   
+  .canvasPicture {
+    margin-left: 10px;
+  }
+
+  #dwlButton {
+    width: 70px;
+    height: 30px;
+  }
