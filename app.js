@@ -70,7 +70,8 @@ pipette.addEventListener('click', () => {
 function clearCanvas() {
     board.innerHTML = ""
     createCanvas()
-    getCanvasPicture()
+    
+
 }
 
 function createCanvas(){
@@ -102,7 +103,7 @@ function setColorMove(element) {
     if (color != pipetteColor) {
         if (isPaining) {
             element.style.background = color
-            getCanvasPicture()
+            
         }
         if (!isOnCanvas) {
             finishPaint()
@@ -113,7 +114,7 @@ function setColorClick(element) {
     if (!isPaining ) {
         if (color != pipetteColor) {
             element.style.background = color
-            getCanvasPicture()
+            
 
             //console.log(element.style.backgroundColor)
             //console.log(window.getComputedStyle(element).backgroundColor.split(',').length)
@@ -171,7 +172,7 @@ function getCanvasPicture() {
             squaresColors[i] = 'rgba(255, 255, 255, 0)'
         }
     }
-    console.log(squaresColors)
+    //console.log(squaresColors)
     for (let i = 0; i < canvasPicture.width; i++) {
         for (let j = 0; j < canvasPicture.height; j++) {
             cvsPic.beginPath()
@@ -182,13 +183,20 @@ function getCanvasPicture() {
     }
 }
 
+let pictureCount = 1
+
 function dwnPicture() {
     image = canvasPicture.toDataURL("image/png", 1.0).replace("imagepng", "image/octet-stream")
     let link = document.createElement('a');
-    link.download = "my-image.png";
+    link.download = `my-image${pictureCount}.png`;
     link.href = image;
     link.click();
+    pictureCount++
 }
+
+setInterval(() => {
+    getCanvasPicture()
+}, 1000);
 
 // Simple example, see optional options for more configuration.
 const pickr = Pickr.create({
