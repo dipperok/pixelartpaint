@@ -117,7 +117,6 @@ function changeColor(getColor) {
     if (color != pipetteColor && color != zeroColor) {
         pcr_button.setAttribute('style', `--pcr-color:${color};`)
         nowColor.style.background = color
-        colorPicker.classList.add('hide')
     } else if (color == pipetteColor) {
         nowColor.style.background = 'radial-gradient(closest-side, #ffffff 60%, #e69e18)'
     } else if (color == zeroColor) {
@@ -225,6 +224,11 @@ setInterval(() => {
     getCanvasPicture()
 }, 1000);
 
+setInterval(() => {
+    if (pickr.isOpen() == false) {
+        colorPicker.classList.add('hide')
+    }
+}, 300)
 
 // Simple example, see optional options for more configuration.
 const pickr = Pickr.create({
