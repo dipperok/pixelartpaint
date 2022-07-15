@@ -1,3 +1,3 @@
 # pixelartpaint
-Simple Pixel Art Paint online.
+Simple Pixel Art Paint online.  
 https://dipperok.github.io/pixelartpaint/

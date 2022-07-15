@@ -12,9 +12,11 @@ let canvasSizePX = 528
 let squareSize = '22px'
 const squareS = document.querySelectorAll('.square')
 const btnClear = document.querySelector('#clearColor')
-const dwlButton = document.querySelector('#dwlButton')
 const canvasPicture = document.querySelector('.canvasPicture')
 let cvsPic = canvasPicture.getContext('2d')
+const fillCanvasBtn = document.querySelector('#fillCanvas')
+const fillSquaresBtn = document.querySelector('#fillSquares')
+const dwnlBtn = document.querySelector('#dwlButton')
 
 const sizeSettings = {
     num0: 64,
@@ -67,11 +69,21 @@ pipette.addEventListener('click', () => {
     //event.target.classList.contains('square')
 })
 
+fillCanvasBtn.addEventListener('click', () => board.style.background = color)
+
+fillSquaresBtn.addEventListener('click', () => {
+    const allSquares = document.querySelectorAll('.square')
+    for (let i = 0; i < canvasSize; i++) {
+        allSquares[i].style.background = color
+    }
+})
+
+dwnlBtn.addEventListener('click', () => dwnPicture())
+
+
 function clearCanvas() {
     board.innerHTML = ""
     createCanvas()
-    
-
 }
 
 function createCanvas(){
@@ -183,6 +195,13 @@ function getCanvasPicture() {
     }
 }
 
+function backgroundFill() {
+    const allSquares = document.querySelectorAll('.square')
+    for (let i = 0; i < allSquares.length; i++) {
+        allSquares[i].style.background = color
+    }
+}
+
 let pictureCount = 1
 
 function dwnPicture() {
@@ -197,6 +216,14 @@ function dwnPicture() {
 setInterval(() => {
     getCanvasPicture()
 }, 1000);
+
+function fillCanvas() {
+
+}
+
+function fillSquares() {
+    
+}
 
 // Simple example, see optional options for more configuration.
 const pickr = Pickr.create({
@@ -224,7 +251,7 @@ const pickr = Pickr.create({
     components: {
         // Main components
         preview: true,
-        opacity: false,
+        opacity: true,
         hue: true,
 
         // Input / output Options

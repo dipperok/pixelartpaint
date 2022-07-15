@@ -17,20 +17,35 @@
             <div class="main">
                 <div class="palette">
                     <div class="paletteTop">
-                        <div class="color" id="color0"></div>
-                        <div class="color" id="color1"></div>
-                        <div class="color" id="color2"></div>
-                        <div class="color" id="color3"></div>
-                        <div class="color" id="color4"></div>
-                        <div class="color" id="color5"></div>
-                        <div class="color" id="color6"></div>
-                        <div class="color-picker" id="colorPicker"></div>
+                        <div class="paletteTopColum1">
+                            <div class="color" id="color0"></div>
+                            <div class="color" id="color1"></div>
+                            <div class="color" id="color2"></div>
+                            <div class="color" id="color3"></div>
+                        </div>
+                        <div class="paletteTopColum2">
+                            <div class="color" id="color4"></div>
+                            <div class="color" id="color5"></div>
+                            <div class="color" id="color6"></div>
+                           
+                            <div class="color" id="colorPicker"><div class="color-picker" id="colorPicker"></div></div>
+                        </div>   
                     </div>
+
                     <div class="paletteBottom">
                         <div class="colorNow" id="colorNow"></div>
-                        <div class="colorUnder" id="pipette"><p>Pipette</p></div>
-                        <div class="colorUnder" id="Eraser"><p>Eraser</p></div>
-                        <div class="colorUnder" id="clearColor"><p>Clear</p></div>
+                        <div class="tools">
+                            <div class="paletteTopColum1">
+                                <div class="colorUnder" id="pipette"><p>Pipette</p></div>
+                                <div class="colorUnder" id="Eraser"><p>Eraser</p></div>
+                                <div class="colorUnder" id="clearColor"><p>Clear</p></div>
+                            </div>
+                            <div class="paletteTopColum2">
+                                <div class="colorUnder" id="fillCanvas"><p>Bcgrnd</p></div>
+                                <div class="colorUnder" id="fillSquares"><p>Pixels</p></div>
+                                <div class="colorUnder" id=""><p></p></div>
+                            </div>
+                        </div>
                     </div>
                     
                 </div>
@@ -40,11 +55,10 @@
                     <div class="canvasSize" id="canvasSize1"><p>16x16</p></div>
                     <div class="canvasSize" id="canvasSize2"><p>24x24</p></div>
                     <div class="canvasSize" id="canvasSize3"><p>32x32</p></div>
-                    
-                    <input type="button"  id="dwlButton" value="Download" onclick="dwnPicture()">
+
+                    <div class="canvasSize" id="dwlButton"><p>dwnl</p></div>
                 </div>
-            </div>
-            
+
         </div>
     <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
     <script src='app.js'></script>
