@@ -1,3 +1,6 @@
+const zeroColor = '#ffffff00'
+const pipetteColor = 'pipette'
+
 let color = '#000000'
 let canvasSize = 576
 let isPaining = false
@@ -39,8 +42,8 @@ const sizeSettings = {
 }
 
 const colors = ['#ffffff', '#000000', '#b64040', '#34a13d', '#4A21DD', '#faed40', '#ec8bec']
-const zeroColor = '#ffffff00'
-const pipetteColor = 'pipette'
+
+getLocal()
 
 for (let i = 0; i < colors.length; i++) {
     btnC = document.querySelector(`#color${i}`)
@@ -49,17 +52,21 @@ for (let i = 0; i < colors.length; i++) {
 for (let i = 0; i < 4; i++) {
     btnS = document.querySelector(`#canvasSize${i}`)
     btnS.addEventListener('click', () => {
-        squareSize = sizeSettings[`sqrSize${i}`]
-        canvasSize = sizeSettings[`num${i}`]
-        console.log(sizeSettings[`sqrSize${i}`])
-        //clearCanvas(canvasSize, sizeSettings[`sqrSize${i}`])
-        board.style.width = sizeSettings[`maxSizePX${i}`]
-        canvasSizePX = sizeSettings[`maxSize${i}`]
-        clearCanvas()
+        changeSize(i)
     })
 }
 
-createCanvas(canvasSize, '22px')
+function changeSize(i) {
+    squareSize = sizeSettings[`sqrSize${i}`]
+    canvasSize = sizeSettings[`num${i}`]
+    console.log(sizeSettings[`sqrSize${i}`])
+    //clearCanvas(canvasSize, sizeSettings[`sqrSize${i}`])
+    board.style.width = sizeSettings[`maxSizePX${i}`]
+    canvasSizePX = sizeSettings[`maxSize${i}`]
+    clearCanvas()
+}
+
+
 
 btnClear.addEventListener('click', () => clearCanvas(canvasSize))
 
@@ -83,13 +90,13 @@ dwnlBtn.addEventListener('click', () => dwnPicture())
 
 nowColor.addEventListener('click', () => changeColorPicker())
 
+
+
+
 function changeColorPicker() {
     colorPicker.classList.remove('hide')
-    
-    
     pickr.show()
 }
-
 
 function clearCanvas() {
     board.innerHTML = ""
@@ -220,6 +227,49 @@ function dwnPicture() {
     pictureCount++
 }
 
+function savaLocal() {
+    const allSquares = document.querySelectorAll('.square')
+    let squaresColors = []
+    for (let i = 0; i < canvasSize; i++) {
+        squaresColors.push(String(allSquares[i].style.background))
+        if(squaresColors[i] == '') {
+            squaresColors[i] = 'rgba(255, 255, 255, 0)'
+        }
+    }
+
+    localStorage.setItem('pixels', JSON.stringify(squaresColors))
+}
+
+function getLocal() {
+    const pixels = JSON.parse(localStorage.getItem('pixels'))
+    let size
+    if(!localStorage.pixels) {
+        
+    } else {
+        size = pixels.length
+        console.log(size)
+        switch (size) {
+            case 64:
+                changeSize(0)
+                break
+            case 256:
+                changeSize(1)
+                break
+            case 576:
+                changeSize(2)
+                break
+            case 1024:
+                changeSize(3)
+                break
+        }
+
+        const allSquares = document.querySelectorAll('.square')
+        for (let i = 0; i < allSquares.length; i++) {
+            allSquares[i].style.background = pixels[i]
+        }
+    }
+}
+
 setInterval(() => {
     getCanvasPicture()
 }, 1000);
@@ -229,6 +279,20 @@ setInterval(() => {
         colorPicker.classList.add('hide')
     }
 }, 300)
+
+setInterval(() => {
+    savaLocal()
+}, 1500)
+
+
+
+const promt1 = document.querySelector('#promt-clr-picker')
+let IsShowPrompt1 = true
+
+function showPrompt() {
+
+
+}
 
 // Simple example, see optional options for more configuration.
 const pickr = Pickr.create({
