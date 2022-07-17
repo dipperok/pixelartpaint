@@ -45,6 +45,7 @@ const colors = ['#ffffff', '#000000', '#b64040', '#34a13d', '#4A21DD', '#faed40'
 
 getLocal()
 
+
 for (let i = 0; i < colors.length; i++) {
     btnC = document.querySelector(`#color${i}`)
     btnC.addEventListener('click', () => changeColor(colors[i]))
@@ -244,7 +245,7 @@ function getLocal() {
     const pixels = JSON.parse(localStorage.getItem('pixels'))
     let size
     if(!localStorage.pixels) {
-        
+        changeSize(2)
     } else {
         size = pixels.length
         console.log(size)
@@ -270,19 +271,21 @@ function getLocal() {
     }
 }
 
+
 setInterval(() => {
     getCanvasPicture()
 }, 1000);
+
+setInterval(() => {
+    savaLocal()
+}, 1500)
+
 
 setInterval(() => {
     if (pickr.isOpen() == false) {
         colorPicker.classList.add('hide')
     }
 }, 300)
-
-setInterval(() => {
-    savaLocal()
-}, 1500)
 
 
 
