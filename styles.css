@@ -1,10 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Edu+VIC+WA+NT+Beginner:wght@700&family=Roboto&display=swap');
+
 * {
     box-sizing: border-box;
   }
-  #promt-clr-picker {
-    position: absolute;
-    left: 100px;
-    color: #fff;
+
+  a {
+    text-decoration: none;
+    cursor: default;
+  }
+  .prompt1 {
+    position: relative;
+    color: rgb(185, 185, 185);
+    font-family: 'Edu VIC WA NT Beginner', cursive;
+    left: 9px;
+    font-size: 10px;
   }
 
   #color0 {
@@ -14,21 +23,22 @@
     background-color: #000;
   }
   #color2 {
-    background-color: #b64040;
+    background-color: #c24646;
   }
   #color3 {
-    background-color: #34a13d;
+    background-color: #f0e335;
   }
   #color4 {
-    background-color: #4A21DD;
-  }
-
-  #color5 {
-    background-color: #faed40;
-  }
-
-  #color6 {
     background-color: #ec8bec;
+  }
+  #color5 {
+    background-color: #4e46c2;
+  }
+  #color6 {
+    background-color: #55e4b9;
+  }
+  #color7 {
+    background-color: #3ea747;
   }
 
   #pipette {
@@ -55,7 +65,7 @@
     background: linear-gradient(300deg, #e2c587, #83d440)
   }
 
-  p {
+  p, h2 {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -190,6 +200,8 @@
   }
 
   .logo h1 {
+    position: relative;
+    bottom: 15px;
     background: -webkit-linear-gradient(300deg,#73e9df, #df7bec, #dd3232);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

@@ -41,10 +41,9 @@ const sizeSettings = {
     sqrSize3: '16px'
 }
 
-const colors = ['#ffffff', '#000000', '#b64040', '#34a13d', '#4A21DD', '#faed40', '#ec8bec']
+const colors = ['#ffffff', '#000000', '#c24646', '#f0e335', '#ec8bec', '#4e46c2', '#55e4b9', '#3ea747']
 
 getLocal()
-
 
 for (let i = 0; i < colors.length; i++) {
     btnC = document.querySelector(`#color${i}`)
@@ -57,6 +56,10 @@ for (let i = 0; i < 4; i++) {
     })
 }
 
+board.addEventListener('mousedown', startPaint)
+board.addEventListener('mouseup', finishPaint)
+body.addEventListener('mousemove', Paint)
+
 function changeSize(i) {
     squareSize = sizeSettings[`sqrSize${i}`]
     canvasSize = sizeSettings[`num${i}`]
@@ -66,8 +69,6 @@ function changeSize(i) {
     canvasSizePX = sizeSettings[`maxSize${i}`]
     clearCanvas()
 }
-
-
 
 btnClear.addEventListener('click', () => clearCanvas(canvasSize))
 
@@ -89,7 +90,10 @@ fillSquaresBtn.addEventListener('click', () => {
 
 dwnlBtn.addEventListener('click', () => dwnPicture())
 
-nowColor.addEventListener('click', () => changeColorPicker())
+nowColor.addEventListener('click', () => {
+    changeColorPicker()
+    showPrompt()
+})
 
 
 
@@ -170,7 +174,7 @@ function Paint(event) {
     const y = event.clientY - rect.y
     //console.log(x, y)
     checkOnCanvas([x, y])
-    return [x, y]
+    //return [x, y]
 }
 
 function checkOnCanvas(XY = [0, 0] ) {
@@ -186,9 +190,7 @@ function checkOnCanvas(XY = [0, 0] ) {
     }
 }
 
-board.addEventListener('mousedown', startPaint)
-board.addEventListener('mouseup', finishPaint)
-body.addEventListener('mousemove', Paint)
+
 
 
 function getCanvasPicture() {
@@ -288,13 +290,15 @@ setInterval(() => {
 }, 300)
 
 
-
-const promt1 = document.querySelector('#promt-clr-picker')
-let IsShowPrompt1 = true
+const promt1 = document.querySelector('.prompt1')
+let isShowPrompt1 = true
 
 function showPrompt() {
-
-
+    if (isShowPrompt1) {
+        isShowPrompt1 = !isShowPrompt1
+        promt1.classList.add('hide')
+        promt1.innerHTML = ''
+    }
 }
 
 // Simple example, see optional options for more configuration.
